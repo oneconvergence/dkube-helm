@@ -1,0 +1,43 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "dkube-installer-hook"
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "dkube-deployer.labels" . | nindent 4 }}
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "-2"
+    "helm.sh/hook-delete-policy": before-hook-creation
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      name: "dkube-installer-hook"
+      labels:
+        {{- include "dkube-deployer.selectorLabels" . | nindent 8 }}
+    spec:
+      hostPID: true
+      restartPolicy: Never
+      imagePullSecrets:
+      - name: dkube-dockerhub-secret
+      containers:
+      - name: dkube-installer-hook
+        image: ocdr/dkubeadm:{{ .Values.dkube.optional.dkubeVersion }}-helm
+        imagePullPolicy: Always
+        securityContext:
+          privileged: true
+        volumeMounts: 
+          -
+            mountPath: /root/.dkube/dkube.ini
+            name: dkube-config
+            subPath: dkube.ini
+        command: ["/opt/dkubeadm/dkubeadm.sh", "dkube", "install", "--accept-eula=yes", "--wipe-data"]
+      serviceAccountName: dkube-deployer-sa
+      volumes:
+        -
+          configMap:
+            name: dkube-config
+          name: dkube-config

@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "dkube-install-status-poll-hook"
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "dkube-deployer.labels" . | nindent 4 }}
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "-1"
+    "helm.sh/hook-delete-policy": before-hook-creation
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      name: "dkube-install-status-poll-hook"
+      labels:
+        {{- include "dkube-deployer.selectorLabels" . | nindent 8 }}
+    spec:
+      restartPolicy: Never
+      imagePullSecrets:
+      - name: dkube-dockerhub-secret
+      containers:
+      - name: dkube-install-status-poll-hook
+        image: ocdr/dkubeadm:{{ .Values.dkube.optional.dkubeVersion }}-helm
+        imagePullPolicy: Always
+        securityContext:
+          privileged: true
+        command: ["/opt/dkubeadm/dkubeadm.sh", "dkube", "poll-install-status"]
+      serviceAccountName: dkube-deployer-sa

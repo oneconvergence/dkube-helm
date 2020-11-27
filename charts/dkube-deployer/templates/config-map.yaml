@@ -1,0 +1,130 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dkube-config
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "dkube-deployer.labels" . | nindent 4 }}
+data:
+  dkube.ini: |
+    #################################################################
+    #                                                               #
+    #                     DKUBE CONFIG FILE                         #
+    #                                                               #
+    #################################################################
+
+    [REQUIRED]
+    # Choose one of dkube/gke/okd/eks/ntnx
+    KUBE_PROVIDER={{ .Values.dkube.required.kubeProvider }}
+    # When HA=true k8s cluster must have min 3 schedulable nodes
+    HA={{ .Values.dkube.required.ha }}
+    # Operator's Local Sign In Details
+    # Username cannot be same as that of a namespace's name.
+    # Also, following names are restricted- dkube, monitoring, kubeflow
+    # Password must be 8 - 20 character long AlphaNumeric string with atleat 1 special character
+    # '$' is not supported
+    USERNAME={{ .Values.dkube.required.username }}
+    PASSWORD={{ .Values.dkube.required.password }}
+
+    [NODE-AFFINITY]
+    # Nodes identified by labels on which the dkube pods must be scheduled.. Say management nodes. Unfilled means no binding. When filled there needs to be minimum of 3nodes in case of HA and one node in case of non-HA
+    # Example: DKUBE_NODES_LABEL: key1=value1
+    DKUBE_NODES_LABEL: {{ .Values.dkube.nodeAffinity.dkubeNodesLabel }}
+    # Nodes to be tolerated by dkube control plane pods so that only they can be scheduled on the nodes
+    # Example: DKUBE_NODES_TAINTS: key1=value1:NoSchedule,key2=value2:NoSchedule
+    DKUBE_NODES_TAINTS: {{ .Values.dkube.nodeAffinity.dkubeNodesTaints }}
+    # Taints of the nodes where gpu workloads must be scheduled.
+    # Example: GPU_WORKLOADS_TAINTS: key1=value1:NoSchedule,key2=value2:NoSchedule
+    GPU_WORKLOADS_TAINTS: {{ .Values.dkube.nodeAffinity.gpuWorkloadTaints }}
+    # Taints of the nodes where production workloads must be scheduled.
+    # Example: PRODUCTION_WORKLOADS_TAINTS: key1=value1:NoSchedule,key2=value2:NoSchedule
+    PRODUCTION_WORKLOADS_TAINTS: {{ .Values.dkube.nodeAffinity.productionWorkloadTaints }}
+
+    [OPTIONAL]
+    # version of dkube installer to be used
+    DKUBE_INSTALLER_VERSION={{ .Values.dkube.optional.dkubeInstallerVersion }}
+    # version of dkube to be installed
+    DKUBE_VERSION={{ .Values.dkube.optional.dkubeVersion }}
+    # Dockerhub Secrets for OCDR images
+    # If you don't create, this will be auto-created with default values.
+    DKUBE_DOCKERHUB_CREDENTIALS_SECRET={{ .Values.dkube.optional.dkubeDockerhubCredentialsSecret }}
+    # TLS Secret of Operator's Certificate & Private Key
+    # If you don't create, place your certificate and private key in $HOME/.dkube
+    DKUBE_OPERATOR_CERTIFICATE={{ .Values.dkube.optional.dkubeOperatorCertificate }}
+    # Repository from where Dkube images can be picked.
+    # Format: registry/[repo]
+    DKUBE_REGISTRY={{ .Values.dkube.optional.dkubeRegistry }}
+    # Container registry username
+    REGISTRY_UNAME={{ .Values.dkube.optional.dkubeRegistryUname }}
+    # Container registry password
+    REGISTRY_PASSWD={{ .Values.dkube.optional.dkubeRegistryPasswd }}
+    # AWS IAM role
+    # Valid only if KUBE_PROVIDER=eks
+    # This will be set as an annotation in few deployments
+    # Format should be like:
+    # IAM_ROLE=<key>: <iam role>
+    # eg: IAM_ROLE=iam.amazonaws.com/role: arn:aws:iam::123456789012:role/myrole
+    # Note: Don't enclose with quotes
+    IAM_ROLE={{ .Values.dkube.optional.IAMRole }}
+
+    [EXTERNAL]
+    # Type of dkube proxy service, possible values are nodeport and loadbalancer
+    ACCESS={{ .Values.dkube.external.access }}
+    # 'true' - to install MetalLB Loadbalancer
+    # Must fill LB_VIP_POOL if true
+    INSTALL_LOADBALANCER={{ .Values.dkube.external.installLoadbalancer }}
+    # Only CIDR notation is allowed. E.g: 192.168.2.0/24
+    # Valid only if INSTALL_LOADBALANCER=true
+    LB_VIP_POOL={{ .Values.dkube.external.LBVipPool }}
+
+    [STORAGE]
+    # Type of storage
+    # Possible values: disk, pv, sc, nfs
+    # Following are required fields for corresponding storage type
+    #    -------------------------------------------------------
+    #    STORAGE_TYPE    REQUIRED_FIELDS
+    #    -------------------------------------------------------
+    #    disk            STORAGE_DISK_NODE and STORAGE_DISK_PATH
+    #    pv              STORAGE_PV
+    #    sc              STORAGE_SC
+    #    nfs             STORAGE_NFS_SERVER and STORAGE_NFS_PATH
+    #    ceph            STORAGE_CEPH_MONITORS and STORAGE_CEPH_SECRET
+
+    STORAGE_TYPE={{ .Values.dkube.storage.storageType }}
+    # Localpath on the storage node
+    STORAGE_DISK_PATH={{ .Values.dkube.storage.storageDiskPath }}
+    # Nodename of the storage node
+    # Possible values: AUTO/<nodename>
+    # AUTO - Master node will be chosen for storage if KUBE_PROVIDER=dkube
+    STORAGE_DISK_NODE={{ .Values.dkube.storage.storageDiskNode }}
+    # Name of persistent volume
+    STORAGE_PV={{ .Values.dkube.storage.storagePV }}
+    # Name of storage class name
+    # Make sure dynamic provisioner is running for the storage class name
+    STORAGE_SC={{ .Values.dkube.storage.storageSC }}
+    # NFS server ip
+    STORAGE_NFS_SERVER={{ .Values.dkube.storage.storageNFSServer }}
+    # NFS path (Make sure the path exists)
+    STORAGE_NFS_PATH={{ .Values.dkube.storage.storageNFSPath }}
+    # Comma separated IPs of ceph monitors
+    STORAGE_CEPH_MONITORS={{ .Values.dkube.storage.storageCEPHMonitors }}
+    # Ceph secret
+    STORAGE_CEPH_SECRET={{ .Values.dkube.storage.storageCEPHSecret }}
+
+    # Ceph data and configuration path for internal ceph
+    # Internal ceph is installed when HA=true and STORAGE_TYPE is not in ("nfs", "ceph")
+    STORAGE_CEPH_PATH={{ .Values.dkube.storage.storageCEPHPath }}
+    [CICD]
+    #To enable tekton cicd with dkube. (true / false)
+    ENABLED={{ .Values.dkube.CICD.enabled }}
+    #Docker registry where CICD built images will be saved. 
+    #For DockerHub, enter docker.io/<username>
+    DOCKER_REGISTRY={{ .Values.dkube.CICD.dockerRegistry }}
+    REGISTRY_USERNAME={{ .Values.dkube.CICD.registryUsername }}
+    REGISTRY_PASSWORD={{ .Values.dkube.CICD.registryPassword }}
+
+    #For AWS ECR on EKS K8S cluster, enter registry as aws_account_id.dkr.ecr.region.amazonaws.com.
+    #DOCKER_REGISTRY=aws_account_id.dkr.ecr.region.amazonaws.com
+    #Worker nodes should either have AmazonEC2ContainerRegistryFullAccess or if you are using KIAM
+    #based IAM control, provide an IAM role which has AmazonEC2ContainerRegistryFullAccess
+    #IAM_ROLE=arn:aws:iam::<aws_account_id>:role/<iam-role>
