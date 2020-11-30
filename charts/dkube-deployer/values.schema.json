@@ -81,14 +81,7 @@
             },
             "storageDiskNode":{
               "type":"string",
-              "oneOf":[
-                {
-                  "format":"host-name"
-                },
-                {
-                  "format":"ipv4"
-                }
-              ]
+              "minLength": 1
             }
           },
           "required":[
@@ -105,7 +98,8 @@
               ]
             },
             "storagePV":{
-              "type":"string"
+              "type":"string",
+              "minLength": 1
             }
           },
           "required":[
@@ -121,7 +115,8 @@
               ]
             },
             "storageSC":{
-              "type":"string"
+              "type":"string",
+              "minLength": 1
             }
           },
           "required":[
@@ -142,14 +137,7 @@
             },
             "storageNFSServer":{
               "type":"string",
-              "oneOf":[
-                {
-                  "format":"host-name"
-                },
-                {
-                  "format":"ipv4"
-                }
-              ]
+              "minLength": 1
             }
           },
           "required":[
@@ -166,10 +154,12 @@
               ]
             },
             "storageCEPHMonitors":{
-              "type":"string"
+              "type":"string",
+              "minLength": 1
             },
             "storageCEPHSecret":{
-              "type":"string"
+              "type":"string",
+              "minLength": 1
             }
           },
           "required":[
