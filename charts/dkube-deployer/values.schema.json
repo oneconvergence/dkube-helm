@@ -77,7 +77,7 @@
             },
             "storageDiskPath":{
               "type":"string",
-              "pattern":"^(/[^/]+)+$"
+              "minLength": 1
             },
             "storageDiskNode":{
               "type":"string",
@@ -133,7 +133,7 @@
             },
             "storageNFSPath":{
               "type":"string",
-              "pattern":"^(/[^/]+)+$"
+              "minLength": 1
             },
             "storageNFSServer":{
               "type":"string",
