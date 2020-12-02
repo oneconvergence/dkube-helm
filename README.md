@@ -48,3 +48,18 @@ To uninstall dkube, please run below command:
 ```bash
 helm uninstall <release-name>
 ```
+
+## Build chart and release to dkube-helm repo
+```bash
+Prerequisites- chart releaser(cr) tools should be installed.
+
+1. If building release with existing version then delete release and tag from github first.
+2. git checkout <new-release-branch>
+3. helm package charts/dkube-deployer --destination .deploy
+4. cr upload -o oneconvergence -r dkube-helm -p .deploy --token <github-token>
+5. git checkout gh-pages
+6. cr index -i ./index.yaml -p .deploy --owner oneconvergence --repo dkube-helm
+7. git add index.yaml
+8. git commit -m "release message"
+9. git push origin gh-pages
+```
