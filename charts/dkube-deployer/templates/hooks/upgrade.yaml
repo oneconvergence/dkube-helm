@@ -24,7 +24,7 @@ spec:
       - name: dkube-dockerhub-secret
       containers:
       - name: dkube-upgrade-hook
-        image: ocdr/dkubeadm:{{ .Values.dkube.optional.dkubeVersion }}-helm
+        image: {{ .Values.dkube.optional.dkubeRegistry }}/dkubeadm:{{ .Values.dkube.optional.dkubeVersion }}-helm
         imagePullPolicy: Always
         securityContext:
           privileged: true
