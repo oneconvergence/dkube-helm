@@ -48,21 +48,51 @@
         "storage":{
           "$id":"#/properties/dkube/properties/storage",
           "type":"object",
-          "oneOf":[
+          "properties": {
+            "storageType": {
+              "enum": ["disk", "pv", "sc", "nfs", "ceph"]
+            }
+          },
+          "allOf":[
             {
-              "$ref":"#/properties/dkube/definitions/disk"
+              "if": {
+                "properties": {"storageType": {"const": "disk"}}
+              },
+              "then": {
+                "$ref": "#/properties/dkube/definitions/disk"
+              }
             },
             {
-              "$ref":"#/properties/dkube/definitions/pv"
+              "if": {
+                "properties": {"storageType": {"const": "pv"}}
+              },
+              "then": {
+                "$ref": "#/properties/dkube/definitions/pv"
+              }
             },
             {
-              "$ref":"#/properties/dkube/definitions/sc"
+              "if": {
+                "properties": {"storageType": {"const": "sc"}}
+              },
+              "then": {
+                "$ref": "#/properties/dkube/definitions/sc"
+              }
             },
             {
-              "$ref":"#/properties/dkube/definitions/nfs"
+              "if": {
+                "properties": {"storageType": {"const": "nfs"}}
+              },
+              "then": {
+                "$ref": "#/properties/dkube/definitions/nfs"
+              }
             },
             {
-              "$ref":"#/properties/dkube/definitions/ceph"
+              "if": {
+                "properties": {"storageType": {"const": "ceph"}}
+              },
+              "then": {
+                "$ref": "#/properties/dkube/definitions/ceph"
+              }
             }
           ]
         }
@@ -70,11 +100,6 @@
       "definitions":{
         "disk":{
           "properties":{
-            "storageType":{
-              "enum":[
-                "disk"
-              ]
-            },
             "storageDiskPath":{
               "type":"string",
               "pattern":"^(/[^/ ]*)+/?$"
@@ -85,52 +110,34 @@
             }
           },
           "required":[
-            "storageType",
             "storageDiskPath",
             "storageDiskNode"
           ]
         },
         "pv":{
           "properties":{
-            "storageType":{
-              "enum":[
-                "pv"
-              ]
-            },
             "storagePV":{
               "type":"string",
               "minLength": 1
             }
           },
           "required":[
-            "storageType",
             "storagePV"
           ]
         },
         "sc":{
           "properties":{
-            "storageType":{
-              "enum":[
-                "sc"
-              ]
-            },
             "storageSC":{
               "type":"string",
               "minLength": 1
             }
           },
           "required":[
-            "storageType",
             "storageSC"
           ]
         },
         "nfs":{
           "properties":{
-            "storageType":{
-              "enum":[
-                "nfs"
-              ]
-            },
             "storageNFSPath":{
               "type":"string",
               "pattern":"^(/[^/ ]*)+/?$"
@@ -141,18 +148,12 @@
             }
           },
           "required":[
-            "storageType",
             "storageNFSPath",
             "storageNFSServer"
           ]
         },
         "ceph":{
           "properties":{
-            "storageType":{
-              "enum":[
-                "ceph"
-              ]
-            },
             "storageCEPHMonitors":{
               "type":"string",
               "minLength": 1
@@ -163,7 +164,6 @@
             }
           },
           "required":[
-            "storageType",
             "storageCEPHMonitors",
             "storageCEPHSecret"
           ]
