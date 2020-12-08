@@ -40,7 +40,7 @@
             "password":{
               "$id":"#/properties/dkube/properties/required/properties/password",
               "type":"string",
-              "pattern":"^[A-Za-z0-9@!%*#?&]{8,20}$"
+              "pattern":"^[A-Za-z0-9@!%*#?&]{7,20}$"
             }
           },
           "additionalProperties":true
