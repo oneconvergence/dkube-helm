@@ -34,7 +34,11 @@ spec:
             mountPath: /root/.dkube/dkube.ini
             name: dkube-config
             subPath: dkube.ini
+        {{- if eq .Values.wipeData "yes" }}
+        command: ["/opt/dkubeadm/dkubeadm.sh", "dkube", "uninstall", "--wipe-data"]
+        {{- else }}
         command: ["/opt/dkubeadm/dkubeadm.sh", "dkube", "uninstall"]
+        {{- end }}
       serviceAccountName: dkube-deployer-sa
       volumes:
         -

@@ -108,3 +108,4 @@ dkube:
     registryPassword: ""
 
 imagePullSecrets: dkube-dockerhub-secret
+wipeData: "yes"
