@@ -34,7 +34,7 @@ spec:
             mountPath: /root/.dkube/dkube.ini
             name: dkube-config
             subPath: dkube.ini
-        {{- if eq .Values.wipeData "yes" }}
+        {{- if eq .Values.wipedata "yes" }}
         command: ["/opt/dkubeadm/dkubeadm.sh", "dkube", "install", "--accept-eula=yes", "--wipe-data"]
         {{- else }}
         command: ["/opt/dkubeadm/dkubeadm.sh", "dkube", "install", "--accept-eula=yes"]
