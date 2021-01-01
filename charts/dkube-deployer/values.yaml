@@ -106,6 +106,9 @@ dkube:
     dockerRegistry: "docker.io/ocdr"
     registryUsername: ""
     registryPassword: ""
+  MODEL-CATALOG:
+    #To enable model catalog with dkube. (true / false)
+    enabled: "true"
 
 imagePullSecrets: dkube-dockerhub-secret
 wipedata: "yes"

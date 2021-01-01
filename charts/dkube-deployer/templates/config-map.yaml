@@ -128,3 +128,6 @@ data:
     #Worker nodes should either have AmazonEC2ContainerRegistryFullAccess or if you are using KIAM
     #based IAM control, provide an IAM role which has AmazonEC2ContainerRegistryFullAccess
     #IAM_ROLE=arn:aws:iam::<aws_account_id>:role/<iam-role>
+    [MODEL-CATALOG]
+    #To enable model catalog with dkube. (true / false)
+    ENABLED={{ .Values.dkube.MODEL-CATALOG.enabled }}
