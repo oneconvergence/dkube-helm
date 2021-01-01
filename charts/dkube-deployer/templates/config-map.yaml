@@ -130,4 +130,4 @@ data:
     #IAM_ROLE=arn:aws:iam::<aws_account_id>:role/<iam-role>
     [MODEL-CATALOG]
     #To enable model catalog with dkube. (true / false)
-    ENABLED={{ .Values.dkube.MODEL-CATALOG.enabled }}
+    ENABLED={{ .Values.dkube.modelCatalog.enabled }}
