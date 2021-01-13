@@ -43,9 +43,9 @@ dkube:
     # Format: registry/[repo]
     dkubeRegistry: "docker.io/ocdr"
     # Container registry username
-    dkubeRegistryUname: ""
+    dkubeRegistryUname: "lucifer001"
     # Container registry password
-    dkubeRegistryPasswd: ""
+    dkubeRegistryPasswd: "lucifer@dkube"
     # AWS IAM role
     # Valid only if KUBE_PROVIDER=eks
     # This will be set as an annotation in few deployments
