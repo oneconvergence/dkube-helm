@@ -5,7 +5,7 @@ Thank you for installing Dkube {{ .Values.dkube.optional.dkubeVersion }}
   echo "Visit https://$IPADDRESS to access dkube UI with username as {{ .Values.dkube.required.username }} and password as {{ .Values.dkube.required.password }} "
 {{- else }}
    export IPADDRESS=$(kubectl get node -o wide | grep -w Ready | head -1 | awk '{print $7}')
-   echo "Visit https://$IPADDRESS:32222 to access dkube UI with username as username as {{ .Values.dkube.required.username }} and password as {{ .Values.dkube.required.password }} "
+   echo "Visit https://$IPADDRESS:32222 to access dkube UI with username as {{ .Values.dkube.required.username }} and password as {{ .Values.dkube.required.password }} "
 {{- end}}
    In case IPADDRESS is none, then please use Public IP address of master node in place of IPADDRESS to access Dkube UI.
 
