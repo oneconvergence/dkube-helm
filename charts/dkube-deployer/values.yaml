@@ -5,7 +5,7 @@
 dkube:
   required:
     # Choose one of dkube/gke/okd/eks/ntnx
-    kubeProvider: "eks"
+    kubeProvider: "dkube"
     # When HA=true k8s cluster must have min 3 schedulable nodes
     ha: "false"
     # Operator's Local Sign In Details
@@ -30,9 +30,9 @@ dkube:
     productionWorkloadTaints: ""
   optional:
     # version of dkube installer to be used
-    dkubeInstallerVersion: "2.1.6.5"
+    dkubeInstallerVersion: "2.1.6.10"
     # version of dkube to be installed
-    dkubeVersion: "2.1.6.5"
+    dkubeVersion: "2.1.6.10"
     # Dockerhub Secrets for OCDR images
     # If you don't create, this will be auto-created with default values.
     dkubeDockerhubCredentialsSecret: "dkube-dockerhub-secret"
