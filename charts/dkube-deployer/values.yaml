@@ -61,7 +61,7 @@ dkube:
     # Must fill LB_VIP_POOL if true
     installLoadbalancer: "false"
     # Only CIDR notation is allowed. E.g: 192.168.2.0/24
-    # Valid only if INSTALL_LOADBALANCER=true
+    # Valid only if installLoadbalancer is true
     LBVipPool: ""
   storage:
     # Type of storage
