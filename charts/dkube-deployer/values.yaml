@@ -50,9 +50,8 @@ dkube:
     # Valid only if KUBE_PROVIDER=eks
     # This will be set as an annotation in few deployments
     # Format should be like:
-    # IAM_ROLE=<key>: <iam role>
-    # eg: IAM_ROLE=iam.amazonaws.com/role: arn:aws:iam::123456789012:role/myrole
-    # Note: Don't enclose with quotes
+    # IAMRole: "<key>: <iam role>"
+    # eg: IAMRole: "iam.amazonaws.com/role: arn:aws:iam::123456789012:role/myrole"
     IAMRole: ""
   external:
     # Type of dkube proxy service, possible values are nodeport and loadbalancer
@@ -106,6 +105,12 @@ dkube:
     dockerRegistry: "docker.io/ocdr"
     registryUsername: ""
     registryPassword: ""
+    #For AWS ECR on EKS K8S cluster, enter registry as aws_account_id.dkr.ecr.region.amazonaws.com.
+    #dockerRegsitry: "aws_account_id.dkr.ecr.region.amazonaws.com"
+    #Worker nodes should either have AmazonEC2ContainerRegistryFullAccess or if you are using KIAM
+    #based IAM control, provide an IAM role which has AmazonEC2ContainerRegistryFullAccess
+    #IAMRole: "arn:aws:iam::<aws_account_id>:role/<iam-role>"
+    IAMRole: ""
   modelCatalog:
     #To enable model catalog with dkube. (true / false)
     enabled: "true"
