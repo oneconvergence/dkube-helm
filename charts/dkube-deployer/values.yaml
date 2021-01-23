@@ -106,7 +106,7 @@ dkube:
     registryUsername: ""
     registryPassword: ""
     #For AWS ECR on EKS K8S cluster, enter registry as aws_account_id.dkr.ecr.region.amazonaws.com.
-    #dockerRegsitry: "aws_account_id.dkr.ecr.region.amazonaws.com"
+    #dockerRegistry: "aws_account_id.dkr.ecr.region.amazonaws.com"
     #Worker nodes should either have AmazonEC2ContainerRegistryFullAccess or if you are using KIAM
     #based IAM control, provide an IAM role which has AmazonEC2ContainerRegistryFullAccess
     #IAMRole: "arn:aws:iam::<aws_account_id>:role/<iam-role>"
