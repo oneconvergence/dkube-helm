@@ -1,11 +1,11 @@
-Thank you for installing Dkube {{ .Values.dkube.optional.dkubeVersion }}
+Thank you for installing Dkube {{ .Values.version }}
 1. Access Dkube UI by running these commands:
-{{- if eq .Values.dkube.external.access "loadbalancer" }}
+{{- if eq .Values.optional.loadbalancer.access "loadbalancer" }}
   export IPADDRESS=$(kubectl get svc -n dkube dkube-proxy -o=jsonpath='{.status.loadBalancer.ingress[0].ip}')
-  echo "Visit https://$IPADDRESS to access dkube UI with username as {{ .Values.dkube.required.username }} and password as {{ .Values.dkube.required.password }} "
+  echo "Visit https://$IPADDRESS to access dkube UI with username as {{ .Values.username }} and password as {{ .Values.password }} "
 {{- else }}
    export IPADDRESS=$(kubectl get node -o wide | grep -w Ready | head -1 | awk '{print $7}')
-   echo "Visit https://$IPADDRESS:32222 to access dkube UI with username as {{ .Values.dkube.required.username }} and password as {{ .Values.dkube.required.password }} "
+   echo "Visit https://$IPADDRESS:32222 to access dkube UI with username as {{ .Values.username }} and password as {{ .Values.password }} "
 {{- end}}
    In case IPADDRESS is none, then please use Public IP address of master node in place of IPADDRESS to access Dkube UI.
 

@@ -24,7 +24,7 @@ spec:
       - name: dkube-dockerhub-secret
       containers:
       - name: dkube-install-status-poll-hook
-        image: {{ .Values.dkube.optional.dkubeRegistry }}/dkubeadm:{{ .Values.dkube.optional.dkubeVersion }}
+        image: {{ .Values.registry.name }}/dkubeadm:{{ .Values.version }}
         imagePullPolicy: Always
         securityContext:
           privileged: true
