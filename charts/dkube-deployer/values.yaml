@@ -74,7 +74,7 @@ dkube:
     #    pv              STORAGE_PV
     #    sc              STORAGE_SC
     #    nfs             STORAGE_NFS_SERVER and STORAGE_NFS_PATH
-    #    ceph            STORAGE_CEPH_MONITORS and STORAGE_CEPH_SECRET
+    #    ceph            STORAGE_CEPH_FILESYSTEM and STORAGE_CEPH_NAMESPACE
     storageType: "disk"
     # Localpath on the storage node
     storageDiskPath: "/var/dkube"
