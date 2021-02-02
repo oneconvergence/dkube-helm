@@ -42,12 +42,13 @@ Image pull secret
 
 
 {{/*
+model catalog enable flag
+*/}}
 model catalog flag
 {{- define "dkube-deployer.modelCatalog" -}}
-{{- if contains "2.1" .Chart.appVersion }}
-printf "false"
+{{- if hasPrefix "2.1" .Values.version }}
+{{- printf "false" }}
 {{- else }}
-printf "true"
+{{- printf "true" }}
 {{- end }}
-{{}}
-*/}}
+{{- end }}

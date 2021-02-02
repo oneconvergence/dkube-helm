@@ -1,9 +1,11 @@
-# Operator's Local Sign In Details
+# Operator's Local Sign In Details.
+# Username cannot be same as that of a kubernetes namespace's name.
+# Names like dkube, monitoring, kubeflow are restricted.
 username: ""
 password: ""
 
 # dkube version
-version: "2.2.1.10"
+version: ""
 
 # Choose one of dkube/gke/okd/eks/ntnx kube provider
 provider: "dkube"
