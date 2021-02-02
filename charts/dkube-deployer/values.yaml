@@ -61,7 +61,7 @@ optional:
         nfsServer: ""
 
         # NFS path (Make sure the path exists)
-        nfsPATH: ""
+        nfsPath: ""
 
         # Comma separated IPs of ceph monitors
         cephMonitors: ""
