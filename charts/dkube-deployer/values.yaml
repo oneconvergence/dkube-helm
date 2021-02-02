@@ -1,8 +1,4 @@
 # Operator's Local Sign In Details
-# Username cannot be same as that of a namespace's name.
-# Also, following names are restricted- dkube, monitoring, kubeflow
-# Password must be 8 - 20 character long AlphaNumeric string with atleat 1 special character
-# '$' is not supported
 username: ""
 password: ""
 
@@ -12,15 +8,14 @@ version: "2.2.1.10"
 # Choose one of dkube/gke/okd/eks/ntnx kube provider
 provider: "dkube"
 
-# When HA=true k8s cluster must have min 3 schedulable nodes
+# For ha deployment, k8s cluster must have min 3 schedulable nodes
 ha: "false"
 
-# Wipe dkube data during install/uninstall of dkube
+# Wipe dkube data during dkube Installation/Uninstallation
 wipedata: "yes"
 
-# Docker container Registry details where dkube software containers are available
+# Docker registry for DKube installation
 registry:
-    # Repository from where Dkube images can be picked.
     # Format: registry/[repo]
     name: "docker.io/ocdr"
 
