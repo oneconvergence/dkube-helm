@@ -154,18 +154,18 @@
         },
         "ceph":{
           "properties":{
-            "storageCEPHMonitors":{
+            "storageCEPHFilesystem":{
               "type":"string",
               "minLength": 1
             },
-            "storageCEPHSecret":{
+            "storageCEPHNamespace":{
               "type":"string",
               "minLength": 1
             }
           },
           "required":[
-            "storageCEPHMonitors",
-            "storageCEPHSecret"
+            "storageCEPHFilesystem",
+            "storageCEPHNamespace"
           ]
         }
       }

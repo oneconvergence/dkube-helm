@@ -91,13 +91,21 @@ dkube:
     storageNFSServer: ""
     # NFS path (Make sure the path exists)
     storageNFSPath: ""
-    # Comma separated IPs of ceph monitors
-    storageCEPHMonitors: ""
-    # Ceph secret
-    storageCEPHSecret: ""
-    # Ceph data and configuration path for internal ceph
+    # Name of the ceph filesystem
+    # E.g: dkubefs
+    storageCEPHFilesystem: ""
+    # Name of the namespace where ceph is installed
+    # E.g: rook-ceph
+    storageCEPHNamespace: ""
+    # Internal Ceph
     # Internal ceph is installed when HA=true and STORAGE_TYPE is not in ("nfs", "ceph")
+    # Both the following fields are compulsory
+    # Configuration path for internal ceph
     storageCEPHPath: "/var/lib/rook"
+    # Disk name for internal ceph storage
+    # It should be a raw formatted disk
+    # E.g: sdb
+    storageCEPHDisk: ""
   CICD:
     #To enable tekton cicd with dkube. (true / false)
     enabled: "false"
