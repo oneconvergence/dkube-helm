@@ -121,7 +121,7 @@ data:
     # Disk name for internal ceph storage
     # It should be a raw formatted disk
     # E.g: sdb
-    STORAGE_CEPH_DISK={{ .Values.dkube.storage.storageCEPHDisk }}
+    STORAGE_CEPH_DISK={{ .Values.optional.storage.storageCEPHDisk }}
     [CICD]
     #To enable tekton cicd with dkube. (true / false)
     ENABLED={{ .Values.optional.CICD.enabled }}
