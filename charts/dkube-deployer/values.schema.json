@@ -1,155 +1,181 @@
 {
-  "$schema":"http://json-schema.org/draft-07/schema",
-  "type":"object",
-  "title":"The root schema",
-  "description":"The root schema comprises the entire JSON document.",
-  "required":[
-    "dkube"
-  ],
-  "properties":{
-    "dkube":{
-      "$id":"#/properties/dkube",
-      "type":"object",
-      "title":"The dkube schema",
-      "description":"An explaination about the purpose of this instance.",
-      "required":[
-        "required",
-        "storage"
-      ],
-      "properties":{
-        "required":{
-          "$id":"#/properties/dkube/properties/required",
-          "type":"object",
-          "title":"The required schema",
-          "description":"An explanation about the purpose of this instance.",
-          "required":[
-            "kubeProvider",
-            "username",
-            "password"
-          ],
-          "properties":{
-            "kubeProvider":{
-              "$id":"#/properties/dkube/properties/required/properties/kubeProvider",
-              "enum": ["dkube", "gke", "okd", "eks", "ntnx"]
-            },
-            "username":{
-              "$id":"#/properties/dkube/properties/required/properties/username",
-              "type":"string",
-              "pattern":"^[A-Za-z0-9-_]+$"
-            },
-            "password":{
-              "$id":"#/properties/dkube/properties/required/properties/password",
-              "type":"string",
-              "pattern":"^[A-Za-z0-9@!%*#?&]{7,20}$"
-            }
-          },
-          "additionalProperties":true
-        },
-        "storage":{
-          "$id":"#/properties/dkube/properties/storage",
+	"$schema":"http://json-schema.org/draft-07/schema",
+	"type":"object",
+	"title":"The root schema",
+	"description":"The root schema comprises the entire JSON document.",
+	"required":[
+		"username",
+		"password",
+		"version",
+		"provider",
+		"ha",
+		"wipedata",
+		"registry",
+		"optional"
+	],
+	"properties":{
+		"provider":{
+			"$id":"#/properties/provider",
+			"enum": ["dkube", "gke", "okd", "eks", "ntnx"]
+		},
+		"username":{
+			"$id":"#/properties/username",
+			"type":"string",
+			"minLength":1
+		},
+		"password":{
+			"$id":"#/properties/password",
+			"type":"string",
+			"minLength":1
+		},
+		"ha":{
+			"$id":"#/properties/ha",
+			"type":"string",
+			"enum": ["true", "false"]
+		},
+		"wipedata":{
+			"$id":"#/properties/wipedata",
+			"type":"string",
+			"enum": ["yes", "no"]
+		},
+		"registry":{
+			"$id":"#/properties/registry",
+			"type":"object",
+			"required": [
+				"name",
+				"username",
+				"password"
+			],
+			"properties":{
+				"name":{
+					"$id":"#/properties/registry/properties/name",
+					"type":"string",
+					"minLength":1
+				},
+				"username":{
+					"$id":"#/properties/registry/properties/username",
+					"type":"string",
+					"minLength":1
+				},
+				"password":{
+					"$id":"#/properties/registry/properties/password",
+					"type":"string",
+					"minLength":1
+				}
+			}
+		},
+		"optional":{
+			"$id":"#/properties/optional",
+			"type":"object",
+			"required": [
+				"storage"
+			],
+			"properties":{
+				"storage":{
+          "$id":"#/properties/optional/properties/storage",
           "type":"object",
           "properties": {
-            "storageType": {
+            "type": {
               "enum": ["disk", "pv", "sc", "nfs", "ceph"]
             }
           },
           "allOf":[
             {
               "if": {
-                "properties": {"storageType": {"const": "disk"}}
+                "properties": {"type": {"const": "disk"}}
               },
               "then": {
-                "$ref": "#/properties/dkube/definitions/disk"
+                "$ref": "#/properties/optional/definitions/disk"
               }
             },
             {
               "if": {
-                "properties": {"storageType": {"const": "pv"}}
+                "properties": {"type": {"const": "pv"}}
               },
               "then": {
-                "$ref": "#/properties/dkube/definitions/pv"
+                "$ref": "#/properties/optional/definitions/pv"
               }
             },
             {
               "if": {
-                "properties": {"storageType": {"const": "sc"}}
+                "properties": {"type": {"const": "sc"}}
               },
               "then": {
-                "$ref": "#/properties/dkube/definitions/sc"
+                "$ref": "#/properties/optional/definitions/sc"
               }
             },
             {
               "if": {
-                "properties": {"storageType": {"const": "nfs"}}
+                "properties": {"type": {"const": "nfs"}}
               },
               "then": {
-                "$ref": "#/properties/dkube/definitions/nfs"
+                "$ref": "#/properties/optional/definitions/nfs"
               }
             },
             {
               "if": {
-                "properties": {"storageType": {"const": "ceph"}}
+                "properties": {"type": {"const": "ceph"}}
               },
               "then": {
-                "$ref": "#/properties/dkube/definitions/ceph"
+                "$ref": "#/properties/optional/definitions/ceph"
               }
             }
           ]
         }
-      },
-      "definitions":{
+			},
+			"definitions":{
         "disk":{
           "properties":{
-            "storageDiskPath":{
+            "path":{
               "type":"string",
               "pattern":"^(/[^/ ]*)+/?$"
             },
-            "storageDiskNode":{
+            "node":{
               "type":"string",
               "minLength": 1
             }
           },
           "required":[
-            "storageDiskPath",
-            "storageDiskNode"
+            "path",
+            "node"
           ]
         },
         "pv":{
           "properties":{
-            "storagePV":{
+            "persistentVolume":{
               "type":"string",
               "minLength": 1
             }
           },
           "required":[
-            "storagePV"
+            "persistentVolume"
           ]
         },
         "sc":{
           "properties":{
-            "storageSC":{
+            "storageClass":{
               "type":"string",
               "minLength": 1
             }
           },
           "required":[
-            "storageSC"
+            "storageClass"
           ]
         },
         "nfs":{
           "properties":{
-            "storageNFSPath":{
+            "nfsPath":{
               "type":"string",
               "pattern":"^(/[^/ ]*)+/?$"
             },
-            "storageNFSServer":{
+            "nfsServer":{
               "type":"string",
               "minLength": 1
             }
           },
           "required":[
-            "storageNFSPath",
-            "storageNFSServer"
+            "nfsPath",
+            "nfsServer"
           ]
         },
         "ceph":{
@@ -169,7 +195,6 @@
           ]
         }
       }
-    },
-    "additionalProperties":true
-  }
+		}
+	}
 }

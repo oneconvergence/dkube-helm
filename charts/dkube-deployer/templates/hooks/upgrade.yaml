@@ -24,9 +24,9 @@ spec:
       - name: dkube-dockerhub-secret
       containers:
       - name: dkube-upgrade-hook
-        image: {{ .Values.dkube.optional.dkubeRegistry }}/dkubeadm:{{ .Values.dkube.optional.dkubeVersion }}
+        image: {{ .Values.registry.name }}/dkubeadm:{{ .Values.version }}
         imagePullPolicy: Always
         securityContext:
           privileged: true
-        command: ["/opt/dkubeadm/dkubeadm.sh", "dkube", "upgrade", {{ .Values.dkube.optional.dkubeVersion | quote}}]
+        command: ["/opt/dkubeadm/dkubeadm.sh", "dkube", "upgrade", {{ .Values.version | quote}}]
       serviceAccountName: dkube-deployer-sa

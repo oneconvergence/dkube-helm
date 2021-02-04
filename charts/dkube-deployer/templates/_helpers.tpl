@@ -18,9 +18,7 @@ Common labels
 {{- define "dkube-deployer.labels" -}}
 helm.sh/chart: {{ include "dkube-deployer.chart" . }}
 {{ include "dkube-deployer.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
+app.kubernetes.io/version: {{ .Values.version | quote }}
 app.kubernetes.io/managed-by: "dkube.io"
 {{- end }}
 
@@ -37,7 +35,20 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Image pull secret
 */}}
 {{- define "dkube-deployer.imagePullSecretData" -}}
-{{- with .Values.dkube.optional }}
-{{- printf "{\"auths\":{\"%s\":{\"username\":\"%s\",\"password\":\"%s\",\"email\":\"ocdlgit@oneconvergence.com\",\"auth\":\"%s\"}}}" .dkubeRegistry .dkubeRegistryUname .dkubeRegistryPasswd (printf "%s:%s" .dkubeRegistryUname .dkubeRegistryPasswd | b64enc) | b64enc }}
+{{- with .Values.registry }}
+{{- printf "{\"auths\":{\"%s\":{\"username\":\"%s\",\"password\":\"%s\",\"email\":\"ocdlgit@oneconvergence.com\",\"auth\":\"%s\"}}}" .name .username .password (printf "%s:%s" .username .password | b64enc) | b64enc }}
+{{- end }}
+{{- end }}
+
+
+{{/*
+model catalog enable flag
+*/}}
+model catalog flag
+{{- define "dkube-deployer.modelCatalog" -}}
+{{- if hasPrefix "2.1" .Values.version }}
+{{- printf "false" }}
+{{- else }}
+{{- printf "true" }}
 {{- end }}
 {{- end }}
