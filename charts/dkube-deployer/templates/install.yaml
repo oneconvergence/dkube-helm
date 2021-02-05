@@ -19,7 +19,7 @@ spec:
       - name: dkube-dockerhub-secret
       containers:
       - name: dkube-helm-installer
-        image: {{ .Values.registry.name }}/dkubeadm:{{ .Values.version }}-nostatus
+        image: {{ .Values.registry.name }}/dkubeadm:{{ .Values.version }}
         imagePullPolicy: Always
         securityContext:
           privileged: true
