@@ -1,21 +1,15 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "dkube-installer-hook"
+  name: "dkube-helm-installer"
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "dkube-deployer.labels" . | nindent 4 }}
-  annotations:
-    # This is what defines this resource as a hook. Without this line, the
-    # job is considered part of the release.
-    "helm.sh/hook": post-install
-    "helm.sh/hook-weight": "-2"
-    "helm.sh/hook-delete-policy": before-hook-creation
 spec:
   backoffLimit: 0
   template:
     metadata:
-      name: "dkube-installer-hook"
+      name: "dkube-helm-installer"
       labels:
         {{- include "dkube-deployer.selectorLabels" . | nindent 8 }}
     spec:
@@ -24,8 +18,8 @@ spec:
       imagePullSecrets:
       - name: dkube-dockerhub-secret
       containers:
-      - name: dkube-installer-hook
-        image: {{ .Values.registry.name }}/dkubeadm:{{ .Values.version }}
+      - name: dkube-helm-installer
+        image: {{ .Values.registry.name }}/dkubeadm:{{ .Values.version }}-nostatus
         imagePullPolicy: Always
         securityContext:
           privileged: true

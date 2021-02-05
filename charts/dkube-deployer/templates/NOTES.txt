@@ -1,20 +1,4 @@
 Thank you for installing Dkube {{ .Values.version }}
-1. Access Dkube UI by running these commands:
-{{- if eq .Values.optional.loadbalancer.access "loadbalancer" }}
-  export IPADDRESS=$(kubectl get svc -n dkube dkube-proxy -o=jsonpath='{.status.loadBalancer.ingress[0].ip}')
-  echo "Visit https://$IPADDRESS to access dkube UI with username as {{ .Values.username }} and password as {{ .Values.password }} "
-{{- else }}
-   export IPADDRESS=$(kubectl get node -o wide | grep -w Ready | head -1 | awk '{print $7}')
-   echo "Visit https://$IPADDRESS:32222 to access dkube UI with username as {{ .Values.username }} and password as {{ .Values.password }} "
-{{- end}}
-   In case IPADDRESS is none, then please use Public IP address of master node in place of IPADDRESS to access Dkube UI.
+Please use below command to see installation logs and wait for install completion,
 
-2. In case of installation failure, please check logs with below steps:
-   a. Run following command to access detailed installation status:
-      echo "Visit https://$IPADDRESS:32323/ui for detailed installation status."
-   b. Run following commands to check dkube-deployer pod:
-      export DEPLOYER_POD=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "job-name=dkube-installer-hook,app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
-      kubectl logs -n {{ .Release.Namespace }} $DEPLOYER_POD
-   c. Run following commands to check dkube-installer pod:
-      export INSTALLER_POD=$(kubectl get pods --namespace dkube -l "role=dkube-installer" -o jsonpath="{.items[0].metadata.name}")
-      kubectl logs -n dkube $INSTALLER_POD
+kubectl logs -l job-name=dkube-helm-installer --follow --tail=-1 && kubectl wait --for=condition=complete --timeout=1h job/dkube-helm-installer
