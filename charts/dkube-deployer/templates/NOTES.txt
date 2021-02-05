@@ -1,4 +1,4 @@
 Thank you for installing Dkube {{ .Values.version }}
-Please use below command to see installation logs and wait for install completion,
+DKube Installation has started successfully, please use below command to see installation logs and wait for install completion,
 
-kubectl logs -l job-name=dkube-helm-installer --follow --tail=-1 && kubectl wait --for=condition=complete --timeout=1h job/dkube-helm-installer
+kubectl logs -l job-name=dkube-helm-installer --follow --tail=-1 && kubectl wait --for=condition=complete --timeout=30m job/dkube-helm-installer
