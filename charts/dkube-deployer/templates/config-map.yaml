@@ -21,7 +21,6 @@ data:
     # Operator's Local Sign In Details
     # Username cannot be same as that of a namespace's name.
     # Also, following names are restricted- dkube, monitoring, kubeflow
-    # Password must be 8 - 20 character long AlphaNumeric string with atleat 1 special character
     # '$' is not supported
     USERNAME={{ .Values.username }}
     PASSWORD={{ .Values.password }}

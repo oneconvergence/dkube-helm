@@ -129,5 +129,5 @@ optional:
     # Format should be like:
     # IAMRole: "<key>: <iam role>"
     # eg: IAMRole: "iam.amazonaws.com/role: arn:aws:iam::123456789012:role/myrole"
-    IMRole: ""
+    IAMRole: ""
 

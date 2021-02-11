@@ -14,9 +14,9 @@ helm show values dkube-helm/dkube-deployer > values.yaml
 2. Update with required details. Please follow the link below for detailed instructions about configuration parameters.
 https://dkube.io/unlinked/install2_1/Install-Getting-Started.html
 
-3. Run helm install with values.yaml(Note- --timeout 1500s is mandatory as dkube install takes around 20 mins approx to complete)
+3. Run helm install with values.yaml
 ```bash
-helm install -f values.yaml <release-name> dkube-helm/dkube-deployer --timeout 1500s
+helm install -f values.yaml <release-name> dkube-helm/dkube-deployer
 ```	
 
 ##### Install with --set option
@@ -25,10 +25,9 @@ For example, To override platform, dkube username and password, use below comman
 Note- (--timeout 1500s is mandatory as dkube install takes around 20 mins approx to complete)
 ```bash
 helm install <release-name> dkube-helm/dkube-deployer
---set dkube.required.kubeProvider=eks
---set dkube.required.username=<username>
---set dkube.required.password=<password>
---timeout 1500s
+--set provider=eks
+--set username=<username>
+--set password=<password>
 ```
 
 ##### check status
@@ -39,8 +38,8 @@ helm status <release-name>
 ## Upgrade
 To upgrade dkube, please use the below command with the newly available version of dkube.
 ```bash
-helm upgrade <release-name> dkube-helm/dkube-deployer --set 
-dkube.optional.dkubeVersion=<new-dkube-version>
+helm get values <deployed-release-name> --all  > values-upgrade.yaml
+helm upgrade -f values-upgrade.yaml <deployed-release-name> dkube-helm/dkube-deployer --set version=<vew-dkube-version> --timeout 1500s
 ```
 
 ## Uninstallation

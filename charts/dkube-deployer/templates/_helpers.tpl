@@ -44,7 +44,6 @@ Image pull secret
 {{/*
 model catalog enable flag
 */}}
-model catalog flag
 {{- define "dkube-deployer.modelCatalog" -}}
 {{- if hasPrefix "2.1" .Values.version }}
 {{- printf "false" }}
