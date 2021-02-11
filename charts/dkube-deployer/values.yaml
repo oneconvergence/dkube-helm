@@ -13,8 +13,9 @@ provider: "dkube"
 # For ha deployment, k8s cluster must have min 3 schedulable nodes
 ha: "false"
 
-# Wipe dkube data during dkube Installation/Uninstallation
-wipedata: "yes"
+# Wipe dkube data during helm operation install/uninstall.
+# Choose one of yes/no
+wipedata: ""
 
 # Docker registry for DKube installation
 registry:
