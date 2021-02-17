@@ -1,3 +1,9 @@
+# DKube EULA is available at: www.oneconvergence.com/EULA/One-Convergence-EULA.pdf
+# Please read it carefully before proceeding
+# By accepting this license agreement you acknowledge that you have read and understood the terms and conditions mentioned.
+# Installation would proceed only when EULA is accepted by defining EULA value as "yes".
+EULA: ""
+
 # Operator's Local Sign In Details.
 # Username cannot be same as that of a kubernetes namespace's name.
 # Names like dkube, monitoring, kubeflow are restricted.

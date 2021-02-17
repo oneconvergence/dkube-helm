@@ -31,7 +31,7 @@ spec:
         {{- if eq .Values.wipedata "yes" }}
         command: ["/opt/dkubeadm/dkubeadm.sh", "dkube", "install", "--accept-eula=yes", "--wipe-data"]
         {{- else }}
-        command: ["/opt/dkubeadm/dkubeadm.sh", "dkube", "install", "--accept-eula=yes"]
+        command: ["/opt/dkubeadm/dkubeadm.sh", "dkube", "install", "--accept-eula={{ .Values.EULA }}"]
         {{- end }}
       serviceAccountName: dkube-deployer-sa
       volumes:
