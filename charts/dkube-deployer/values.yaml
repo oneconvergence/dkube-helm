@@ -1,7 +1,6 @@
-# DKube EULA is available at: www.oneconvergence.com/EULA/One-Convergence-EULA.pdf
-# Please read it carefully before proceeding
-# By accepting this license agreement you acknowledge that you have read and understood the terms and conditions mentioned.
-# Installation would proceed only when EULA is accepted by defining EULA value as "yes".
+# The DKube EULA is available at: www.oneconvergence.com/EULA/One-Convergence-EULA.pdf
+# By accepting this license agreement you acknowledge that you agree to the terms and conditions.
+# The installation will only proceed if the EULA is accepted by defining the EULA value as "yes".
 EULA: ""
 
 # Operator's Local Sign In Details.
