@@ -21,7 +21,6 @@ data:
     # Operator's Local Sign In Details
     # Username cannot be same as that of a namespace's name.
     # Also, following names are restricted- dkube, monitoring, kubeflow
-    # Password must be 8 - 20 character long AlphaNumeric string with atleat 1 special character
     # '$' is not supported
     USERNAME={{ .Values.username }}
     PASSWORD={{ .Values.password }}
@@ -105,7 +104,7 @@ data:
     # NFS server ip
     STORAGE_NFS_SERVER={{ .Values.optional.storage.nfsServer }}
     # NFS path (Make sure the path exists)
-    STORAGE_NFS_PATH={{ .Values.optional.storage.storageNFSPath }}
+    STORAGE_NFS_PATH={{ .Values.optional.storage.nfsPath }}
     # Name of the ceph filesystem
     # E.g: dkubefs
     STORAGE_CEPH_FILESYSTEM={{ .Values.optional.storage.storageCEPHFilesystem }}
