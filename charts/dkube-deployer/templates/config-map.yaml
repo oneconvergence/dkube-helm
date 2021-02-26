@@ -87,8 +87,9 @@ data:
     #    pv              STORAGE_PV
     #    sc              STORAGE_SC
     #    nfs             STORAGE_NFS_SERVER and STORAGE_NFS_PATH
-    #    ceph            STORAGE_CEPH_FILESYSTEM and STORAGE_CEPH_NAMESPACE
     #    ceph            STORAGE_CEPH_MONITORS and STORAGE_CEPH_SECRET
+    # For 2.2.1.12 and later
+    #    ceph            STORAGE_CEPH_FILESYSTEM and STORAGE_CEPH_NAMESPACE
 
     STORAGE_TYPE={{ .Values.optional.storage.type }}
     # Localpath on the storage node
@@ -112,20 +113,20 @@ data:
     STORAGE_CEPH_SECRET={{ .Values.optional.storage.cephSecret }}
     # Name of the ceph filesystem
     # E.g: dkubefs
-    STORAGE_CEPH_FILESYSTEM={{ .Values.optional.storage.storageCEPHFilesystem }}
+    STORAGE_CEPH_FILESYSTEM={{ .Values.optional.storage.cephFilesystem }}
     # Name of the namespace where ceph is installed
     # E.g: rook-ceph
-    STORAGE_CEPH_NAMESPACE={{ .Values.optional.storage.storageCEPHNamespace }}
+    STORAGE_CEPH_NAMESPACE={{ .Values.optional.storage.cephNamespace }}
     
     # Internal Ceph
     # Internal ceph is installed when HA=true and STORAGE_TYPE is not in ("nfs", "ceph")
     # Both the following fields are compulsory
     # Configuration path for internal ceph
-    STORAGE_CEPH_PATH={{ .Values.optional.storage.storageCEPHPath }}
+    STORAGE_CEPH_PATH={{ .Values.optional.storage.cephPath }}
     # Disk name for internal ceph storage
     # It should be a raw formatted disk
     # E.g: sdb
-    STORAGE_CEPH_DISK={{ .Values.optional.storage.storageCEPHDisk }}
+    STORAGE_CEPH_DISK={{ .Values.optional.storage.cephDisk }}
     [CICD]
     #To enable tekton cicd with dkube. (true / false)
     ENABLED={{ .Values.optional.CICD.enabled }}
