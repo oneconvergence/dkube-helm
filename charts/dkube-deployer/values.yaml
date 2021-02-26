@@ -45,7 +45,9 @@ optional:
         #    pv              persistentVolume
         #    sc              storageClass
         #    nfs             nfsServer and nfsPath
-        #    ceph            storageCEPHFilesystem and storageCEPHNamespace
+        #    ceph            cephMonitors and cephSecret
+        # For release 2.2.1.12 and later
+        #    ceph            cephFilesystem and cephNamespace
         type: "disk"
 
         # Localpath on the storage node
@@ -69,25 +71,31 @@ optional:
         # NFS path (Make sure the path exists)
         nfsPath: ""
 
+        # Comma separated IPs of ceph monitors
+        cephMonitors: ""
+
+        # Ceph secret
+        cephSecret: ""
+
         # Name of the ceph filesystem
         # E.g: dkubefs
-        storageCEPHFilesystem: ""
+        cephFilesystem: ""
 
         # Name of the namespace where ceph is installed
         # E.g: rook-ceph
-        storageCEPHNamespace: ""
+        cephNamespace: ""
 
         # Internal Ceph
         # Internal ceph is installed when HA=true and STORAGE_TYPE is not in ("nfs", "ceph")
         # Both the following fields are compulsory
 
         # Configuration path for internal ceph
-        storageCEPHPath: "/var/lib/rook"
+        cephPath: "/var/lib/rook"
 
         # Disk name for internal ceph storage
         # It should be a raw formatted disk
         # E.g: sdb
-        storageCEPHDisk: ""
+        cephDisk: ""
 
     loadbalancer:
         # Type of dkube proxy service, possible values are nodeport and loadbalancer

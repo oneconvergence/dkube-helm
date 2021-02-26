@@ -88,6 +88,7 @@ data:
     #    sc              STORAGE_SC
     #    nfs             STORAGE_NFS_SERVER and STORAGE_NFS_PATH
     #    ceph            STORAGE_CEPH_FILESYSTEM and STORAGE_CEPH_NAMESPACE
+    #    ceph            STORAGE_CEPH_MONITORS and STORAGE_CEPH_SECRET
 
     STORAGE_TYPE={{ .Values.optional.storage.type }}
     # Localpath on the storage node
@@ -105,6 +106,10 @@ data:
     STORAGE_NFS_SERVER={{ .Values.optional.storage.nfsServer }}
     # NFS path (Make sure the path exists)
     STORAGE_NFS_PATH={{ .Values.optional.storage.nfsPath }}
+    # Comma separated IPs of ceph monitors
+    STORAGE_CEPH_MONITORS={{ .Values.optional.storage.cephMonitors }}
+    # Ceph secret
+    STORAGE_CEPH_SECRET={{ .Values.optional.storage.cephSecret }}
     # Name of the ceph filesystem
     # E.g: dkubefs
     STORAGE_CEPH_FILESYSTEM={{ .Values.optional.storage.storageCEPHFilesystem }}
@@ -116,7 +121,7 @@ data:
     # Internal ceph is installed when HA=true and STORAGE_TYPE is not in ("nfs", "ceph")
     # Both the following fields are compulsory
     # Configuration path for internal ceph
-    CONFIG_CEPH_PATH={{ .Values.optional.storage.storageCEPHPath }}
+    STORAGE_CEPH_PATH={{ .Values.optional.storage.storageCEPHPath }}
     # Disk name for internal ceph storage
     # It should be a raw formatted disk
     # E.g: sdb

@@ -186,19 +186,23 @@
         },
         "ceph":{
           "properties":{
-            "storageCEPHFilesystem":{
+            "cephMonitors":{
               "type":"string",
               "minLength": 1
             },
-            "storageCEPHNamespace":{
+            "cephSecret":{
+              "type":"string",
+              "minLength": 1
+            },
+            "cephFilesystem":{
+              "type":"string",
+              "minLength": 1
+            },
+            "cephNamespace":{
               "type":"string",
               "minLength": 1
             }
-          },
-          "required":[
-            "storageCEPHFilesystem",
-            "storageCEPHNamespace"
-          ]
+          }
         }
       }
 		}
