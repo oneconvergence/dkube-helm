@@ -187,20 +187,16 @@
         "ceph":{
           "properties":{
             "cephMonitors":{
-              "type":"string",
-              "minLength": 1
+              "type":"string"
             },
             "cephSecret":{
-              "type":"string",
-              "minLength": 1
+              "type":"string"
             },
             "cephFilesystem":{
-              "type":"string",
-              "minLength": 1
+              "type":"string"
             },
             "cephNamespace":{
-              "type":"string",
-              "minLength": 1
+              "type":"string"
             }
           }
         }
