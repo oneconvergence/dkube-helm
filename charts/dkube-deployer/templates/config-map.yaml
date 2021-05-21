@@ -24,6 +24,9 @@ data:
     # '$' is not supported
     USERNAME={{ .Values.username }}
     PASSWORD={{ .Values.password }}
+    # To wipe dkube storage
+    # Accepted values: yes/no
+    WIPEDATA={{ .Values.wipedata }}
 
     [NODE-AFFINITY]
     # Nodes identified by labels on which the dkube pods must be scheduled.. Say management nodes. Unfilled means no binding. When filled there needs to be minimum of 3nodes in case of HA and one node in case of non-HA
@@ -88,6 +91,8 @@ data:
     #    sc              STORAGE_SC
     #    nfs             STORAGE_NFS_SERVER and STORAGE_NFS_PATH
     #    ceph            STORAGE_CEPH_MONITORS and STORAGE_CEPH_SECRET
+    # For 2.2.1.12 and later
+    #    ceph            STORAGE_CEPH_FILESYSTEM and STORAGE_CEPH_NAMESPACE
 
     STORAGE_TYPE={{ .Values.optional.storage.type }}
     # Localpath on the storage node
@@ -109,10 +114,22 @@ data:
     STORAGE_CEPH_MONITORS={{ .Values.optional.storage.cephMonitors }}
     # Ceph secret
     STORAGE_CEPH_SECRET={{ .Values.optional.storage.cephSecret }}
-
-    # Ceph data and configuration path for internal ceph
+    # Name of the ceph filesystem
+    # E.g: dkubefs
+    STORAGE_CEPH_FILESYSTEM={{ .Values.optional.storage.cephFilesystem }}
+    # Name of the namespace where ceph is installed
+    # E.g: rook-ceph
+    STORAGE_CEPH_NAMESPACE={{ .Values.optional.storage.cephNamespace }}
+    
+    # Internal Ceph
     # Internal ceph is installed when HA=true and STORAGE_TYPE is not in ("nfs", "ceph")
+    # Both the following fields are compulsory
+    # Configuration path for internal ceph
     STORAGE_CEPH_PATH={{ .Values.optional.storage.cephPath }}
+    # Disk name for internal ceph storage
+    # It should be a raw formatted disk
+    # E.g: sdb
+    STORAGE_CEPH_DISK={{ .Values.optional.storage.cephDisk }}
     [CICD]
     #To enable tekton cicd with dkube. (true / false)
     ENABLED={{ .Values.optional.CICD.enabled }}
