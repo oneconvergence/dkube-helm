@@ -147,3 +147,13 @@ data:
     [MODEL-CATALOG]
     #To enable model catalog with dkube. (true / false)
     ENABLED={{ template "dkube-deployer.modelCatalog" . }}
+
+    # DKube Features
+    # Accepted values are: true, false
+    [FEATURES]
+    # To enable model publish
+    MODEL_PUBLISH={{ .Values.optional.features.modelPublish | default "false" }}
+    # To enable featureset engineering
+    FEATURESET={{ .Values.optional.features.featureset | default "false" }}
+    # To enable projects
+    PROJECTS={{ .Values.optional.features.projects | default "false" }}

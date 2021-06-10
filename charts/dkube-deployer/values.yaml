@@ -159,3 +159,14 @@ optional:
     # eg: IAMRole: "iam.amazonaws.com/role: arn:aws:iam::123456789012:role/myrole"
     IAMRole: ""
 
+    # DKube features
+    # Accepted values are: true, false
+    features:
+        # Model publish
+        modelPublish: "false"
+
+        # Enable featureset engineering
+        featureset: "false"
+
+        # Enable projects
+        projects: "false"
