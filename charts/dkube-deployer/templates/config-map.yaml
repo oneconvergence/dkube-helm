@@ -127,6 +127,11 @@ data:
     #Worker nodes should either have AmazonEC2ContainerRegistryFullAccess or if you are using KIAM
     #based IAM control, provide an IAM role which has AmazonEC2ContainerRegistryFullAccess
     IAM_ROLE={{ .Values.optional.CICD.IAMRole }}
+
+    [MODELMONITOR]
+    #To enable modelmonitor in dkube. (true / false)
+    ENABLED={{ .Values.optional.modelmonitor.enabled }}
+
     [MODEL-CATALOG]
     #To enable model catalog with dkube. (true / false)
     ENABLED={{ template "dkube-deployer.modelCatalog" . }}
