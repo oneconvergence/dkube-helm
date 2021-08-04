@@ -4,6 +4,7 @@
 	"title":"The root schema",
 	"description":"The root schema comprises the entire JSON document.",
 	"required":[
+    "EULA",
 		"username",
 		"password",
 		"version",
@@ -28,6 +29,11 @@
 			"type":"string",
 			"minLength":1
 		},
+    "EULA":{
+      "$id":"#/properties/EULA",
+      "type":"string",
+      "enum": ["yes"]
+    },
 		"ha":{
 			"$id":"#/properties/ha",
 			"type":"string",
