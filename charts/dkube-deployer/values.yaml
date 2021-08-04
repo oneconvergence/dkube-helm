@@ -46,6 +46,8 @@ optional:
         #    sc              storageClass
         #    nfs             nfsServer and nfsPath
         #    ceph            cephMonitors and cephSecret
+        # For release 2.2.1.12 and later
+        #    ceph            cephFilesystem and cephNamespace
         type: "disk"
 
         # Localpath on the storage node
@@ -69,15 +71,35 @@ optional:
         # NFS path (Make sure the path exists)
         nfsPath: ""
 
+        # Only for external ceph before release 2.2.1.12
         # Comma separated IPs of ceph monitors
         cephMonitors: ""
 
+        # Only for external ceph before release 2.2.1.12
         # Ceph secret
         cephSecret: ""
 
-        # Ceph data and configuration path for internal ceph
+        # Only for external ceph from release 2.2.1.12
+        # Name of the ceph filesystem
+        # E.g: dkubefs
+        cephFilesystem: ""
+
+        # Only for external ceph from release 2.2.1.12
+        # Name of the namespace where ceph is installed
+        # E.g: rook-ceph
+        cephNamespace: ""
+
+        # Internal Ceph
         # Internal ceph is installed when HA=true and STORAGE_TYPE is not in ("nfs", "ceph")
+
+        # Configuration path for internal ceph
         cephPath: "/var/lib/rook"
+
+        # Only for internal ceph from release 2.2.1.12
+        # Disk name for internal ceph storage
+        # It should be a raw formatted disk
+        # E.g: sdb
+        cephDisk: ""
 
     loadbalancer:
         # Type of dkube proxy service, possible values are nodeport and loadbalancer
