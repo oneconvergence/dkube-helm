@@ -130,6 +130,9 @@ data:
     # It should be a raw formatted disk
     # E.g: sdb
     STORAGE_CEPH_DISK={{ .Values.optional.storage.cephDisk }}
+    [MODELMONITOR]
+    #To enable modelmonitor in dkube. (true / false)
+    ENABLED={{ .Values.optional.modelmonitor.enabled }}
     [CICD]
     #To enable tekton cicd with dkube. (true / false)
     ENABLED={{ .Values.optional.CICD.enabled }}

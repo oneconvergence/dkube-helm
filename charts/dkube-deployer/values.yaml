@@ -114,6 +114,10 @@ optional:
         # Valid only if installLoadbalancer is true
         vipPool: ""
 
+    modelmonitor:
+        #To enable modelmonitor in dkube. (true / false)
+        enabled: "false"
+
     CICD:
         #To enable tekton cicd with dkube. (true / false)
         enabled: "false"
