@@ -12,7 +12,7 @@ password: ""
 # dkube version
 version: ""
 
-# Choose one of dkube/gke/okd/eks/ntnx kube provider
+# Choose one of dkube/gke/okd/eks/ntnx/tanzu kube provider
 provider: "dkube"
 
 # For ha deployment, k8s cluster must have min 3 schedulable nodes

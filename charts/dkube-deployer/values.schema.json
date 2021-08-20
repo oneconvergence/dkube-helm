@@ -17,7 +17,7 @@
 	"properties":{
 		"provider":{
 			"$id":"#/properties/provider",
-			"enum": ["dkube", "gke", "okd", "eks", "ntnx"]
+			"enum": ["dkube", "gke", "okd", "eks", "ntnx", "tanzu"]
 		},
 		"username":{
 			"$id":"#/properties/username",
