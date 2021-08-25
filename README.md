@@ -57,7 +57,7 @@ Prerequisites- chart releaser(cr) tools (**version 0.2.0**) should be installed.
 3. helm package charts/dkube-deployer --destination .deploy
 4. cr upload -o oneconvergence -r dkube-helm -p .deploy --token <github-token>
 5. git checkout gh-pages
-6. cr index -i ./index.yaml -p .deploy --owner oneconvergence --repo dkube-helm
+6. cr index -i ./index.yaml -p .deploy --owner oneconvergence -r dkube-helm -c https://oneconvergence.github.io/dkube-helm
 7. git add index.yaml
 8. git commit -m "release message"
 9. git push origin gh-pages
