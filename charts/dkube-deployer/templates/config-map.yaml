@@ -27,6 +27,9 @@ data:
     # To wipe dkube storage
     # Accepted values: yes/no
     WIPEDATA={{ .Values.wipedata }}
+    # To install minimal version of dkube
+    # Accepted values: yes/no
+    MINIMAL={{ .Values.minimal }}
 
     [NODE-AFFINITY]
     # Nodes identified by labels on which the dkube pods must be scheduled.. Say management nodes. Unfilled means no binding. When filled there needs to be minimum of 3nodes in case of HA and one node in case of non-HA

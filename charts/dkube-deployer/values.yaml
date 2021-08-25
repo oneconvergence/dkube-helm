@@ -22,6 +22,10 @@ ha: "false"
 # Choose one of yes/no
 wipedata: ""
 
+# To install minimal version of dkube
+# Accepted values: yes/no
+minimal: "no"
+
 # Docker registry for DKube installation
 registry:
     # Format: registry/[repo]
