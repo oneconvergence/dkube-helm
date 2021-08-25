@@ -2,6 +2,15 @@ apiVersion: v1
 entries:
   dkube-deployer:
   - apiVersion: v2
+    created: "2021-08-25T19:15:56.379232199Z"
+    description: A Helm chart for Dkube product installation on kubernetes platform
+    digest: f16645596599d42530edefdcaca032f34b01f866db0404315a4bc066c4284eda
+    name: dkube-deployer
+    type: application
+    urls:
+    - https://github.com/oneconvergence/dkube-helm/releases/download/dkube-deployer-1.0.4/dkube-deployer-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v2
     created: "2021-08-25T13:05:38.942352711+05:30"
     description: A Helm chart for Dkube product installation on kubernetes platform
     digest: 6502d93bfab1de4213ccb4fb08964db29bb2fbdd18aedca2f1600cafc8de5925
@@ -52,4 +61,4 @@ entries:
     urls:
     - https://github.com/oneconvergence/dkube-helm/releases/download/dkube-deployer-0.0.1/dkube-deployer-0.0.1.tgz
     version: 0.0.1
-generated: "2021-08-01T07:01:00.7665813Z"
+generated: "2021-08-25T19:15:56.379352732Z"
