@@ -120,10 +120,10 @@ optional:
 
     DBAAS:
         # To configure external database for dkube
-        # Supported sql, sqlserver(mssql)
-        database: "sql"
-
+        # Supported mysql, sqlserver(mssql)
         # Empty will pickup default sql db installed with dkube
+        database: ""
+
         # Syntaxes here can be followed to specify dsn https://gorm.io/docs/connecting_to_the_database.html
         dsn: ""
 
