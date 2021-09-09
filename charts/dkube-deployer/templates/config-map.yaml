@@ -153,8 +153,8 @@ data:
 
     #To configure external database for dkube
     [DBAAS]
-    #Supported sql, sqlserver(mssql)
-    DATABASE={{ .Values.optional.DBAAS.database }}
+    #Supported mysql, sqlserver(mssql)
     #Empty will pickup default sql db installed with dkube.
+    DATABASE={{ .Values.optional.DBAAS.database }}
     #Syntaxes here can be followed to specify dsn https://gorm.io/docs/connecting_to_the_database.html
     DSN={{ .Values.optional.DBAAS.dsn }}
