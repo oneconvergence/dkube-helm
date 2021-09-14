@@ -122,6 +122,15 @@ optional:
         #To enable modelmonitor in dkube. (true / false)
         enabled: "false"
 
+    DBAAS:
+        # To configure external database for dkube
+        # Supported mysql, sqlserver(mssql)
+        # Empty will pickup default sql db installed with dkube
+        database: ""
+
+        # Syntaxes here can be followed to specify dsn https://gorm.io/docs/connecting_to_the_database.html
+        dsn: ""
+
     CICD:
         #To enable tekton cicd with dkube. (true / false)
         enabled: "false"
