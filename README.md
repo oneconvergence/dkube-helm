@@ -50,7 +50,7 @@ helm uninstall <release-name>
 
 ## Build chart and release to dkube-helm repo
 ```bash
-Prerequisites- chart releaser(cr) tools (**version 0.2.0**) and helm binary should be installed.
+Prerequisites- chart releaser(cr) tools (v1.2.1) and helm binary should be installed.
 
 1. If building release with existing version then delete release and tag from github first.
 2. git checkout <new-release-branch>
