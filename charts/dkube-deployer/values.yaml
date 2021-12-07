@@ -26,6 +26,10 @@ wipedata: ""
 # Accepted values: yes/no
 minimal: "no"
 
+# To install air-gapped version of dkube
+# Accepted values: yes/no
+airgap: "no"
+
 # Docker registry for DKube installation
 registry:
     # Format: registry/[repo]
