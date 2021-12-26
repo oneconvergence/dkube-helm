@@ -126,6 +126,14 @@ optional:
         #To enable modelmonitor in dkube. (true / false)
         enabled: "false"
 
+    
+    promscale:
+        #To enable promscale in dkube. (true / false)
+        enabled: "true"
+
+        backup:
+            enabled: "false"
+
     DBAAS:
         # To configure external database for dkube
         # Supported mysql, sqlserver(mssql)
