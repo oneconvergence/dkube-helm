@@ -142,7 +142,7 @@ data:
     ENABLED={{ .Values.optional.modelmonitor.enabled }}
     [PROMSCALE]
     #To enable promscale in dkube. (true/false)
-    ENABLED={{ .Values.optional.promscle.enabled }}
+    ENABLED={{ .Values.optional.promscale.enabled }}
     BACKUP={{ .Values.optional.promscale.backup.enabled }}
     [CICD]
     #To enable tekton cicd with dkube. (true / false)
