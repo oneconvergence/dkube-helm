@@ -131,8 +131,67 @@ optional:
         #To enable promscale in dkube. (true / false)
         enabled: "true"
 
-        backup:
-            enabled: "false"
+        timescaledb:
+            # to use external timescale db
+            external: "false"
+            
+            # keep it false if db is already existing
+            # create: false
+
+            # timescale db | default: timescale
+            db: ""
+
+            # database user | default: postgres
+            user: ""
+
+            # database password
+            password: ""
+            
+            # host address of timescale database
+            host: ""
+
+            # If external is true backup will not be honored 
+            backup:
+                
+                # to take backup of timescaledb
+                enabled: "false"
+                
+                s3:
+
+                    # S3 endpont
+                    endpoint: 
+
+                    # s3 bucket
+                    bucket:
+
+                    # path in bucket |  default :/timescale/backups
+                    path: 
+
+                    # region
+                    region: 
+
+                    # s3 access key
+                    key:
+
+                    # s3 access secret
+                    secret:
+
+        #If you want have timescaledb already running you can fill in the below section
+        external:
+
+            # To use external promscale set it to true
+            enabled: "false"   
+
+            # https://docs.timescale.com/promscale/latest/send-data/prometheus/#configure-prometheus-to-read-and-write-data-from-promscale
+            # base_url of promsscale hosted service
+            base_url: "" 
+
+            # read_url prefix | default: /read
+            read_url_suffix: ""
+
+            # write_url prefix | default: /write
+            write_url_suffix: ""
+                    
 
     DBAAS:
         # To configure external database for dkube
