@@ -146,6 +146,8 @@ data:
     # To enable promscale in dkube. (true/false)
     ENABLED={{ .Values.optional.promscale.enabled }}
 
+    BACKUP_ENABLED={{ .Values.optional.promscale.timescaledb.backup.enabled }}
+
     # Timescale db details needs to provide if you are hosting 
     # To use an external timescaledb. (true/false).
     EXTERNAL={{ .Values.optional.promscale.timescaledb.external }}
@@ -153,6 +155,7 @@ data:
     USER={{ .Values.optional.promscale.timescaledb.user }}
     HOST={{ .Values.optional.promscale.timescaledb.host }}
     PASSWORD={{ .Values.optional.promscale.timescaledb.password }}
+    PORT={{ .Values.optional.promscale.timescaledb.port }}
 
     # S3 details for backup only required if external is false and you want to use 
     # custom s3 source for backup
@@ -162,7 +165,7 @@ data:
     S3_BUCKET={{ .Values.optional.promscale.timescaledb.backup.s3.bucket }}
     S3_REGION={{ .Values.optional.promscale.timescaledb.backup.s3.endpoint }}
     S3_KEY={{ .Values.optional.promscale.timescaledb.backup.s3.key }}
-    S3_SECRET _KEY={{ .Values.optional.promscale.timescaledb.backup.s3.secret }}
+    S3_SECRET_KEY={{ .Values.optional.promscale.timescaledb.backup.s3.secret }}
 
     [PROMSCALE]
     # Promscale Configuartion
@@ -172,11 +175,11 @@ data:
     EXTERNAL={{ .Values.optional.promscale.external.enabled }}
     # Base URL 
     # https://docs.timescale.com/promscale/latest/send-data/prometheus/#configure-prometheus-to-read-and-write-data-from-promscale       
-    PROMSACLE_BASE_URL={{ .Values.optional.promsacle.external.base_url }}
+    BASE_URL={{ .Values.optional.promsacle.external.base_url }}
     # Default Value : /read  
-    PROMSCALE_READ_SUFFIX={{ .Values.optional.promscale.external.read_url_suffix }}
+    READ_SUFFIX={{ .Values.optional.promscale.external.read_url_suffix }}
     #Default Value: /write
-    PROMSCALE_WRITE_SUFFIX={{ .Values.optional.promscale.external.write_url_suffix }}
+    WRITE_SUFFIX={{ .Values.optional.promscale.external.write_url_suffix }}
 
     [CICD]
     #To enable tekton cicd with dkube. (true / false)

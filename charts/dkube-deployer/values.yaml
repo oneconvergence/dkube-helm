@@ -150,12 +150,16 @@ optional:
             # host address of timescale database
             host: ""
 
+            # timescale default port
+            port: 5432
+
             # If external is true backup will not be honored 
             backup:
                 
                 # to take backup of timescaledb
                 enabled: "false"
                 
+                # don't fill the details if you want to use internal dkube storage 
                 s3:
 
                     # S3 endpont
