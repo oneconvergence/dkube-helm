@@ -175,7 +175,7 @@ data:
     EXTERNAL={{ .Values.optional.promscale.external.enabled }}
     # Base URL 
     # https://docs.timescale.com/promscale/latest/send-data/prometheus/#configure-prometheus-to-read-and-write-data-from-promscale       
-    BASE_URL={{ .Values.optional.promsacle.external.base_url }}
+    BASE_URL={{ .Values.optional.promscale.external.base_url }}
     # Default Value : /read  
     READ_SUFFIX={{ .Values.optional.promscale.external.read_url_suffix }}
     #Default Value: /write
