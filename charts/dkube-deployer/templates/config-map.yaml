@@ -62,11 +62,11 @@ data:
     DKUBE_OPERATOR_CERTIFICATE=
     # Repository from where Dkube images can be picked.
     # Format: registry/[repo]
-    DKUBE_REGISTRY={{ .Values.registry.name }}
+    DKUBE_REGISTRY={{ template "dkube-deployer.dockerRegistryName" . }}
     # Container registry username
-    REGISTRY_UNAME={{ .Values.registry.username }}
+    REGISTRY_UNAME={{ template "dkube-deployer.dockerRegistryUser" . }}
     # Container registry password
-    REGISTRY_PASSWD={{ .Values.registry.password }}
+    REGISTRY_PASSWD={{ template "dkube-deployer.dockerRegistryPass" . }}
     # AWS IAM role
     # Valid only if KUBE_PROVIDER=eks
     # This will be set as an annotation in few deployments
@@ -145,9 +145,9 @@ data:
     ENABLED={{ .Values.optional.CICD.enabled }}
     #Docker registry where CICD built images will be saved. 
     #For DockerHub, enter docker.io/<username>
-    DOCKER_REGISTRY={{ .Values.optional.CICD.registryName }}
-    REGISTRY_USERNAME={{ .Values.optional.CICD.registryUsername }}
-    REGISTRY_PASSWORD={{ .Values.optional.CICD.registryPassword }}
+    DOCKER_REGISTRY={{ template "dkube-deployer.CICDdockerRegistryName" . }}
+    REGISTRY_USERNAME={{ template "dkube-deployer.CICDdockerRegistryUser" . }}
+    REGISTRY_PASSWORD={{ template "dkube-deployer.CICDdockerRegistryPass" . }}
 
     #For AWS ECR on EKS K8S cluster, enter registry as aws_account_id.dkr.ecr.region.amazonaws.com.
     #DOCKER_REGISTRY=aws_account_id.dkr.ecr.region.amazonaws.com
