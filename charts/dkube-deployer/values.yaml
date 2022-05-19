@@ -129,7 +129,7 @@ optional:
     
     promscale:
         #To enable promscale in dkube. (true / false)
-        enabled: "true"
+        enabled: "false"
 
         timescaledb:
             # to use external timescale db
