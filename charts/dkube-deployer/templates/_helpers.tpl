@@ -32,12 +32,76 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 
 
 {{/*
+DockerRegistry
+*/}}
+{{- define "dkube-deployer.dockerRegistryName" -}}
+{{- with .Values }}
+{{- if and ( eq .airgap "yes" ) ( eq .registry.name "docker.io/ocdr" ) }}
+{{- printf "%s" "registry-server.dkube.io:443/docker.io/ocdr" }}
+{{- else }}
+{{- printf "%s" .registry.name }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- define "dkube-deployer.dockerRegistryUser" -}}
+{{- if .Values.registry.username }}
+{{- printf "%s" .Values.registry.username }}
+{{- else if ( eq ( include "dkube-deployer.dockerRegistryName" . ) "registry-server.dkube.io:443/docker.io/ocdr" ) }}
+{{- printf "admin" }}
+{{- else }}
+{{ required "Registry username is required in values.yaml" .Values.registry.username }}
+{{- end }}
+{{- end }}
+
+{{- define "dkube-deployer.dockerRegistryPass" -}}
+{{- if .Values.registry.password }}
+{{- printf "%s" .Values.registry.password }}
+{{- else if ( eq ( include "dkube-deployer.dockerRegistryName" . ) "registry-server.dkube.io:443/docker.io/ocdr" ) }}
+{{- printf "bitnami" }}
+{{- else }}
+{{ required "Registry password is required in values.yaml" .Values.registry.password }}
+{{- end }}
+{{- end }}
+
+{{/*
+CICDDockerRegistry
+*/}}
+{{- define "dkube-deployer.CICDdockerRegistryName" -}}
+{{- with .Values }}
+{{- if and ( eq .airgap "yes" ) ( eq .optional.CICD.registryName "docker.io/ocdr" ) }}
+{{- printf "registry-server.dkube.io:443/docker.io/ocdr" }}
+{{- else }}
+{{- printf "%s" .optional.CICD.registryName }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- define "dkube-deployer.CICDdockerRegistryUser" -}}
+{{- if .Values.optional.CICD.registryUsername }}
+{{- printf "%s" .Values.optional.CICD.registryUsername }}
+{{- else if ( eq ( include "dkube-deployer.CICDdockerRegistryName" . ) "registry-server.dkube.io:443/docker.io/ocdr" ) }}
+{{- printf "admin" }}
+{{- else if ( eq .Values.optional.CICD.enabled "true" ) }}
+{{ required "CICD registry username is required in values.yaml" .Values.optional.CICD.registryUsername }}
+{{- end }}
+{{- end }}
+
+{{- define "dkube-deployer.CICDdockerRegistryPass" -}}
+{{- if .Values.optional.CICD.registryPassword }}
+{{- printf "%s" .Values.optional.CICD.registryPassword }}
+{{- else if ( eq ( include "dkube-deployer.CICDdockerRegistryName" . ) "registry-server.dkube.io:443/docker.io/ocdr" ) }}
+{{- printf "bitnami" }}
+{{- else if ( eq .Values.optional.CICD.enabled "true" ) }}
+{{ required "CICD registry password is required in values.yaml" .Values.optional.CICD.registryPassword }}
+{{- end }}
+{{- end }}
+
+{{/*
 Image pull secret
 */}}
 {{- define "dkube-deployer.imagePullSecretData" -}}
-{{- with .Values.registry }}
-{{- printf "{\"auths\":{\"%s\":{\"username\":\"%s\",\"password\":\"%s\",\"email\":\"ocdlgit@oneconvergence.com\",\"auth\":\"%s\"}}}" .name .username .password (printf "%s:%s" .username .password | b64enc) | b64enc }}
-{{- end }}
+{{- printf "{\"auths\":{\"%s\":{\"username\":\"%s\",\"password\":\"%s\",\"email\":\"ocdlgit@oneconvergence.com\",\"auth\":\"%s\"}}}" ( include "dkube-deployer.dockerRegistryName" . ) ( include "dkube-deployer.dockerRegistryUser" . ) ( include "dkube-deployer.dockerRegistryPass" . ) (printf "%s:%s" ( include "dkube-deployer.dockerRegistryUser" . ) ( include "dkube-deployer.dockerRegistryPass" . ) | b64enc) | b64enc }}
 {{- end }}
 
 

@@ -21,13 +21,11 @@
 		},
 		"username":{
 			"$id":"#/properties/username",
-			"type":"string",
-			"minLength":1
+			"type":"string"
 		},
 		"password":{
 			"$id":"#/properties/password",
-			"type":"string",
-			"minLength":1
+			"type":"string"
 		},
     "EULA":{
       "$id":"#/properties/EULA",
@@ -60,13 +58,11 @@
 				},
 				"username":{
 					"$id":"#/properties/registry/properties/username",
-					"type":"string",
-					"minLength":1
+					"type":"string"
 				},
 				"password":{
 					"$id":"#/properties/registry/properties/password",
-					"type":"string",
-					"minLength":1
+					"type":"string"
 				}
 			}
 		},
