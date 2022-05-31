@@ -83,6 +83,12 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "dkube-deployer.labels" . | nindent 4 }}
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": pre-upgrade
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": before-hook-creation
 data:
   dkube.ini: |
     #################################################################
