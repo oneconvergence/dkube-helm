@@ -82,7 +82,7 @@ CICDDockerRegistry
 {{- printf "%s" .Values.optional.CICD.registryUsername }}
 {{- else if ( eq ( include "dkube-deployer.CICDdockerRegistryName" . ) "registry-server.dkube.io:443/docker.io/ocdr" ) }}
 {{- printf "admin" }}
-{{- else if ( eq .Values.optional.CICD.enabled "true" ) }}
+{{- else if ( and ( eq .Values.optional.CICD.enabled "true" ) ( not .Values.provider "eks") ) }}
 {{ required "CICD registry username is required in values.yaml" .Values.optional.CICD.registryUsername }}
 {{- end }}
 {{- end }}
@@ -92,7 +92,7 @@ CICDDockerRegistry
 {{- printf "%s" .Values.optional.CICD.registryPassword }}
 {{- else if ( eq ( include "dkube-deployer.CICDdockerRegistryName" . ) "registry-server.dkube.io:443/docker.io/ocdr" ) }}
 {{- printf "bitnami" }}
-{{- else if ( eq .Values.optional.CICD.enabled "true" ) }}
+{{- else if ( and ( eq .Values.optional.CICD.enabled "true" ) ( not .Values.provider "eks") ) }}
 {{ required "CICD registry password is required in values.yaml" .Values.optional.CICD.registryPassword }}
 {{- end }}
 {{- end }}
