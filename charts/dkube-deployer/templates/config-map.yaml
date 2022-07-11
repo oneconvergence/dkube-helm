@@ -75,6 +75,8 @@ data:
     # eg: IAM_ROLE=iam.amazonaws.com/role: arn:aws:iam::123456789012:role/myrole
     # Note: Don't enclose with quotes
     IAM_ROLE={{ .Values.optional.IAMRole }}
+    #To configure Feast
+    FEAST_ENABLED={{ .Values.optional.enableFeast }}
 
     [EXTERNAL]
     # Type of dkube proxy service, possible values are nodeport and loadbalancer

@@ -251,3 +251,6 @@ optional:
     # eg: IAMRole: "iam.amazonaws.com/role: arn:aws:iam::123456789012:role/myrole"
     IAMRole: ""
 
+    # Enable Feast
+    enableFeast: "false"
+
