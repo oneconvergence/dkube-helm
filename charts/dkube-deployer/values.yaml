@@ -153,34 +153,7 @@ optional:
             # timescale default port
             port: 5432
 
-            # If external is true backup will not be honored 
-            backup:
-                
-                # to take backup of timescaledb
-                enabled: "false"
-                
-                # don't fill the details if you want to use internal dkube storage 
-                s3:
-
-                    # S3 endpont
-                    endpoint: 
-
-                    # s3 bucket
-                    bucket:
-
-                    # path in bucket |  default :/timescale/backups
-                    path: 
-
-                    # region
-                    region: 
-
-                    # s3 access key
-                    key:
-
-                    # s3 access secret
-                    secret:
-
-        #If you want have timescaledb already running you can fill in the below section
+        #If you have timescaledb already running you can fill in the below section
         external:
 
             # To use external promscale set it to true
