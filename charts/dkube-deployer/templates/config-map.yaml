@@ -146,8 +146,6 @@ data:
     # To enable promscale in dkube. (true/false)
     ENABLED={{ .Values.optional.promscale.enabled }}
 
-    BACKUP_ENABLED={{ .Values.optional.promscale.timescaledb.backup.enabled }}
-
     # Timescale db details needs to provide if you are hosting 
     # To use an external timescaledb. (true/false).
     EXTERNAL={{ .Values.optional.promscale.timescaledb.external }}
@@ -156,16 +154,6 @@ data:
     HOST={{ .Values.optional.promscale.timescaledb.host }}
     PASSWORD={{ .Values.optional.promscale.timescaledb.password }}
     PORT={{ .Values.optional.promscale.timescaledb.port }}
-
-    # S3 details for backup only required if external is false and you want to use 
-    # custom s3 source for backup
-    # default: /timescale
-    S3_PATH={{ .Values.optional.promscale.timescaledb.backup.s3.path }}
-    S3_HOST={{ .Values.optional.promscale.timescaledb.backup.s3.endpoint }}
-    S3_BUCKET={{ .Values.optional.promscale.timescaledb.backup.s3.bucket }}
-    S3_REGION={{ .Values.optional.promscale.timescaledb.backup.s3.endpoint }}
-    S3_KEY={{ .Values.optional.promscale.timescaledb.backup.s3.key }}
-    S3_SECRET_KEY={{ .Values.optional.promscale.timescaledb.backup.s3.secret }}
 
     [PROMSCALE]
     # Promscale Configuartion
