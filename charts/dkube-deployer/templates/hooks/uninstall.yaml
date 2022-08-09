@@ -25,7 +25,7 @@ spec:
       - name: dkube-dockerhub-secret
       containers:
       - name: dkube-uninstaller-hook
-        image: {{ .Values.registry.name }}/dkubeadm:{{ .Values.version }}
+        image: {{ template "dkube-deployer.dockerRegistryName" . }}/dkubeadm:{{ .Values.version }}
         imagePullPolicy: Always
         securityContext:
           privileged: true
