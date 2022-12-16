@@ -194,3 +194,8 @@ data:
     DATABASE={{ .Values.optional.DBAAS.database }}
     #Syntaxes here can be followed to specify dsn https://gorm.io/docs/connecting_to_the_database.html
     DSN={{ .Values.optional.DBAAS.dsn }}
+
+    # Kafka configuratarion
+    [KAFKA]
+    # To enable kafka in dkube. (true / false)
+    ENABLED={{ .Values.optional.kafka.enabled }}
