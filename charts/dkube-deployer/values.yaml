@@ -224,3 +224,6 @@ optional:
     # eg: IAMRole: "iam.amazonaws.com/role: arn:aws:iam::123456789012:role/myrole"
     IAMRole: ""
 
+    kafka:
+        #To enable kafka in dkube. (true / false)
+        enabled: "false"
