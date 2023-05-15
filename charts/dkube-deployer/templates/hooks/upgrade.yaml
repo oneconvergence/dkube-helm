@@ -24,7 +24,7 @@ spec:
       - name: dkube-dockerhub-secret
       containers:
       - name: dkube-upgrade-hook
-        image: {{ .Values.registry.name }}/dkubex_adm:{{ .Values.version }}
+        image: {{ .Values.registry.name }}/dkube_dkubeadm:{{ .Values.version }}
         imagePullPolicy: Always
         securityContext:
           privileged: true
