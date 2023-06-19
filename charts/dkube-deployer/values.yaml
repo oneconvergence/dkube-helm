@@ -227,3 +227,7 @@ optional:
     kafka:
         #To enable kafka in dkube. (true / false)
         enabled: "false"
+    gpu-operator:
+        enabled: "false"
+        driver: "false"
+        toolkit: "false"
