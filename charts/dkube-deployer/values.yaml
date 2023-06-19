@@ -227,7 +227,10 @@ optional:
     kafka:
         #To enable kafka in dkube. (true / false)
         enabled: "false"
-    gpu-operator:
+    gpuOperator:
+        #To enable gpu operator in dkube. (true / false)
         enabled: "false"
+        #enable driver in case driver is not enabled. (true / false). If node setup is already performed do not change these values
         driver: "false"
+        #enable toolkit in case toolkit is not enabled. (true / false). If node setup is already performed do not change these values
         toolkit: "false"

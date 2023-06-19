@@ -200,19 +200,19 @@ data:
     # To enable kafka in dkube. (true / false)
     ENABLED={{ .Values.optional.kafka.enabled }}
     [GPU-OPERATOR]
-    {{ if .Values.optional.gpu-operator }}
-    {{ if .Values.optional.gpu-operator.enabled }}
-    ENABLED={{ .Values.optional.gpu-operator.enabled }}
+    {{ if .Values.optional.gpuOperator }}
+    {{ if .Values.optional.gpuOperator.enabled }}
+    ENABLED={{ .Values.optional.gpuOperator.enabled }}
     {{ else }}
     ENABLED="false"
     {{ end }}
-    {{ if .Values.optional.gpu-operator.driver }}
-    DRIVER={{ .Values.optional.gpu-operator.driver }}
+    {{ if .Values.optional.gpuOperator.driver }}
+    DRIVER={{ .Values.optional.gpuOperator.driver }}
     {{ else }}
     DRIVER="false"
     {{ end }}
-    {{ if .Values.optional.gpu-operator.toolkit }}
-    TOOLKIT={{ .Values.optional.gpu-operator.toolkit }}
+    {{ if .Values.optional.gpuOperator.toolkit }}
+    TOOLKIT={{ .Values.optional.gpuOperator.toolkit }}
     {{ else }}
     TOOLKIT="false"
     {{ end }}
